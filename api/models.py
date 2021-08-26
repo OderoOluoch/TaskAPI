@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 
 class Task(models.Model):
     #user = models.ForeignKey(User, on_delete= models.CASCADE, null = TRue, blank=True)
-    title = models.CharField(max_lenght=200)
+    title = models.CharField(max_length=200)
     detail = models.TextField(null=True, blank = True)
-    complete = models.BooleanFiled(default=False)
+    complete = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -13,4 +13,4 @@ class Task(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['completed']
+        ordering = ['complete']

@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer
-from .models import Note
+from .models import Task
 
-class NoteSerializer(ModelSerializer):
+class TaskSerializer(ModelSerializer):
     class Meta:
-        model = Note
+        model = Task
         fields = '__all__'

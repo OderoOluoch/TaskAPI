@@ -3,9 +3,9 @@ from . import views
 
 urlpatterns = [
     path('',views.getRoutes),
-    path('notes/', views.getNotes),
-    path('notes/create/', views.createNote),
-    path('notes/<str:pk>/update', views.updateNote),
-    path('notes/<str:pk>/delete', views.deleteNote),
-    path('notes/<str:pk>/', views.getNote),
+    path('tasks/', views.getTasks),
+    path('tasks/create/', views.createTask),
+    path('tasks/<str:pk>/update', views.updateTask),
+    path('tasks/<str:pk>/delete', views.deleteTask),
+    path('tasks/<str:pk>/', views.getTask),
 ]

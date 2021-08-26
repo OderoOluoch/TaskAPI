@@ -1,85 +1,86 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import NoteSerializer
-from .models import Note
+from .serializers import TaskSerializer
+from .models import Task
 
 
 @api_view(['GET'])
 def getRoutes(request):
     routes = [
         {
-            'EndPoint':'/notes/',
+            'EndPoint':'api/tasks/',
             'method':'GET',
             'body':None,
-            'description':'Returns an array of notes'
+            'description':'Returns an array of tasks'
         },
          {
-            'EndPoint':'/notes/id',
+            'EndPoint':'api/tasks/id',
             'method':'GET',
             'body':None,
-            'description':'Returns a single notes object based on id'
+            'description':'Returns a single task object based on id'
         },
          {
-            'EndPoint':'/notes/create',
+            'EndPoint':'api/tasks/create',
             'method':'POST',
             'body':{'body':""},
-            'description':'Creates a new notes object with data send using POST request'
+            'description':'Creates a new task object with data send using POST request'
         },
          {
-            'EndPoint':'/notes/id/update',
+            'EndPoint':'api/task/id/update',
             'method':'PUT',
             'body':{'body':""},
-            'description':'Updates Existing Notes Object with new data coming in from Post request'
+            'description':'Updates Existing task Object with new data coming in from Post request'
         },
          {
-            'EndPoint':'/notes/id/delete',
+            'EndPoint':'api/task/id/delete',
             'method':'DELETE',
             'body':None,
-            'description':'Deletes an exiting notes object based on provided id'
+            'description':'Deletes an exiting task object based on provided id'
         },
     ]
     return Response(routes)
 
 
 @api_view(['GET'])
-def getNotes(request):
-    notes = Note.objects.all()
-    serializer = NoteSerializer(notes, many=True)
+def getTasks(request):
+    tasks = Task.objects.all()
+    serializer = TaskSerializer(tasks, many=True)
     return Response(serializer.data)
 
 
 
 @api_view(['GET'])
-def getNote(request, pk):
-    note = Note.objects.get(id=pk)
-    serializer = NoteSerializer(note, many=False)
+def getTask(request, pk):
+    task = Task.objects.get(id=pk)
+    serializer = TaskSerializer(task, many=False)
     return Response(serializer.data)
 
 
 @api_view(['POST'])
-def createNote(request):
+def createTask(request):
     data = request.data
 
-    note = Note.objects.create(
-        body=data['body']
+    task = Task.objects.create(
+        title=data['title'],
+        detail=data['detail']
     )
-    serializer = NoteSerializer(note, many=False)
+    serializer = TaskSerializer(task, many=False)
     return Response(serializer.data)
 
 
 @api_view(['PUT'])
-def updateNote(request, pk):
+def updateTask(request, pk):
     data = request.data
 
-    note = Note.objects.get(id=pk)
-    serializer = NoteSerializer(note,data=request.data)
+    task = Task.objects.get(id=pk)
+    serializer = TaskSerializer(task,data=request.data)
     if serializer.is_valid():
         serializer.save()
 
     return Response(serializer.data)
 
 @api_view(['DELETE'])
-def deleteNote(request, pk):
-    note = Note.objects.get(id=pk)
-    note.delete()
-    return Response('Note was Deleted!')
+def deleteTask(request, pk):
+    task = Task.objects.get(id=pk)
+    task.delete()
+    return Response('Task was deleted!')
