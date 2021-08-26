@@ -8,31 +8,31 @@ from .models import Task
 def getRoutes(request):
     routes = [
         {
-            'EndPoint':'api/tasks/',
+            'EndPoint':'api/v1/tasks/',
             'method':'GET',
             'body':None,
             'description':'Returns an array of tasks'
         },
          {
-            'EndPoint':'api/tasks/id',
+            'EndPoint':'api/v1/tasks/id',
             'method':'GET',
             'body':None,
             'description':'Returns a single task object based on id'
         },
          {
-            'EndPoint':'api/tasks/create',
+            'EndPoint':'api/v1/tasks/create',
             'method':'POST',
             'body':{'body':""},
             'description':'Creates a new task object with data send using POST request'
         },
          {
-            'EndPoint':'api/task/id/update',
+            'EndPoint':'api/v1/task/id/update',
             'method':'PUT',
             'body':{'body':""},
             'description':'Updates Existing task Object with new data coming in from Post request'
         },
          {
-            'EndPoint':'api/task/id/delete',
+            'EndPoint':'api/v1/task/id/delete',
             'method':'DELETE',
             'body':None,
             'description':'Deletes an exiting task object based on provided id'
