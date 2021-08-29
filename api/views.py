@@ -22,12 +22,20 @@ def getRoutes(request):
          {
             'EndPoint':'api/v1/tasks/create',
             'method':'POST',
-            'body':{'body':""},
+            'body':{'body':{
+                    "title": "",
+                    "detail": "",
+            }},
             'description':'Creates a new task object with data send using POST request'
         },
          {
             'EndPoint':'api/v1/task/id/update',
             'method':'PUT',
+             'body':{'body':{
+                 "title": "",
+                    "detail": "",
+                    "complete":""
+            }},
             'body':{'body':""},
             'description':'Updates Existing task Object with new data coming in from Post request'
         },
